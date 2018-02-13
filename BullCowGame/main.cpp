@@ -26,27 +26,35 @@ int main()
 
 void PlayGame()
 {
+	BCGame.Reset();
 	int MaxTries = BCGame.GetMaxTries();
 	std::cout << MaxTries << std::endl;
 	//loop
-	
-	for (int i = 0; i < MaxTries; i++)
+	//TODO change from FOR to While loop
+	for (int count = 0; count < MaxTries; count++)
 	{
-		std::string Guess = GetGuess();
+		std::string Guess = GetGuess(); //TODO make loop checking valid
+				
+		//submit valid guess to the game
+		//print number of bulls and cows
+		
 		std::cout << "Your guess was: " << Guess<<std::endl;
 		std::cout << std::endl;
 	}
+
+	//TODO summarise game
 }
 void PrintInfo()
 {
 	//Introduce the game
-	constexpr int WORLD_LENGHT = 5;
+	constexpr int WORD_LENGHT = 5;
 	std::cout << "Welcome to Bulls and Cows!\n";
-	std::cout << "Can you guess the " << WORLD_LENGHT << " letter isogram I'm thinking off?" << std::endl;
+	std::cout << "Can you guess the " << WORD_LENGHT << " letter isogram I'm thinking off?" << std::endl;
 }
 std::string GetGuess()
 {	
-	int CurrentTry;
+	int CurrentTry = BCGame.GetCurrentTry() ;
+	std::cout << "Try " << CurrentTry << std::endl;
 	//Get a guess from player
 	std::cout << "Enter your Guess: ";
 	std::string Guess = "";
