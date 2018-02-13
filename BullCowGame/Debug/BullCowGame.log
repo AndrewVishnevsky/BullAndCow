@@ -1,0 +1,5 @@
+﻿  main.cpp
+d:\unrealcourse\section_02\bullcowgame\main.cpp(49): warning C4101: 'CurrentTry': unreferenced local variable
+  FBullCowGame.cpp
+  Generating Code...
+  BullCowGame.vcxproj -> D:\UnrealCourse\Section_02\Debug\BullCowGame.exe
