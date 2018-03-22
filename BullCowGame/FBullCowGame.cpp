@@ -58,7 +58,24 @@ FBullCowCount FBullCowGame::SubmitGuess(FString Guess)
 	return BullCowCount;
 }
 
-bool FBullCowGame::CheckGuessValidity(std::string) const
+EWordStatus FBullCowGame::CheckGuessValidity(FString Guess) const
 {
-	return false;
+	if (false)// if the guess isn't an isogram
+	{
+		return EWordStatus::Not_Isogram;
+	} 
+	else if(false) // if the guess isn't all lowercase
+		{
+		return EWordStatus::No_LowerCase;
+		}
+		else if (Guess.length()!=GetHiddenWordLength())
+		{
+			return EWordStatus::Wrong_Length;
+		}
+			else
+			{
+				return EWordStatus::OK;
+			}
+
+	return EWordStatus::OK; //TODO make error
 }

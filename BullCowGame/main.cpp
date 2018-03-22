@@ -40,6 +40,8 @@ void PlayGame()
 	for (int32 count = 0; count < MaxTries; count++)
 	{
 		FText Guess = GetGuess(); //TODO make loop checking valid
+
+		EWordStatus Status = BCGame.CheckGuessValidity(Guess);
 				
 		//submit valid guess to the game
 		FBullCowCount BullCowCount = BCGame.SubmitGuess(Guess);
@@ -58,7 +60,7 @@ void PrintInfo()
 	std::cout << "Welcome to Bulls and Cows!\n";
 	std::cout << "Can you guess the " << BCGame.GetHiddenWordLength() << " letter isogram I'm thinking off?" << std::endl;
 }
-FText GetGuess()
+FText GetGuess() //TODO change to GetValidGuess
 {	
 	int32 CurrentTry = BCGame.GetCurrentTry() ;
 	std::cout << "Try " << CurrentTry << std::endl;
