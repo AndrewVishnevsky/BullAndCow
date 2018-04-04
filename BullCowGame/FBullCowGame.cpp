@@ -5,7 +5,7 @@ FBullCowGame::FBullCowGame(){Reset();}
 int32 FBullCowGame::GetMaxTries() const { return MyMaxTries; }
 int32 FBullCowGame::GetCurrentTry() const { return MyCurrentTry; }
 int32 FBullCowGame::GetHiddenWordLength() const { return MyHiddenWord.length();}
-bool FBullCowGame::IsGameWon() const { return false; }
+bool FBullCowGame::IsGameWon() const { return bGameIsWon; }
 
 
 
@@ -17,22 +17,23 @@ void FBullCowGame::Reset()
 
 	MyMaxTries = MAX_TRIES;	
 	MyHiddenWord = HIDDEN_WORD;
-	MyCurrentTry = 1;	
+	MyCurrentTry = 1;
+	bGameIsWon = false;
 	return;
 }
 
-FBullCowCount FBullCowGame::SubmitGuess(FString Guess)
+FBullCowCount FBullCowGame::SubmitValidGuess(FString Guess)
 {
 	//receives a Valid guess, incriments and return
 	MyCurrentTry++;
-	//setup a return variable
 	FBullCowCount BullCowCount;
 
 	// цикл проверки всех символов в веденном слове
-	int32 HiddenWorldLenght = MyHiddenWord.length();
-	for (int32 MHWChar = 0; MHWChar < HiddenWorldLenght; MHWChar++)
+	int32 WorldLenght = MyHiddenWord.length();//assuming same lenght as guess
+
+	for (int32 MHWChar = 0; MHWChar < WorldLenght; MHWChar++)
 	{	//—равниваем буквы с загаданным словом
-		for (int32 GChar = 0; GChar < HiddenWorldLenght; GChar++)
+		for (int32 GChar = 0; GChar < WorldLenght; GChar++)
 		{	//≈сли они совпадают то
 			if (Guess[GChar] == MyHiddenWord[MHWChar])
 			{
@@ -48,13 +49,15 @@ FBullCowCount FBullCowGame::SubmitGuess(FString Guess)
 			}
 		}
 	}
-		
+	if (BullCowCount.Bulls == WorldLenght)
+	{
+		bGameIsWon = true;
+	}
+	else 
+	{
+		bGameIsWon = false;
+	}			
 			
-				
-						
-				//если
-					//увеличиваем коров
-
 	return BullCowCount;
 }
 
@@ -77,5 +80,4 @@ EWordStatus FBullCowGame::CheckGuessValidity(FString Guess) const
 				return EWordStatus::OK;
 			}
 
-	return EWordStatus::OK; //TODO make error
 }
