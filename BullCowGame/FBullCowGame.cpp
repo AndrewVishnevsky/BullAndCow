@@ -29,11 +29,11 @@ FBullCowCount FBullCowGame::SubmitValidGuess(FString Guess)
 	FBullCowCount BullCowCount;
 
 	// цикл проверки всех символов в веденном слове
-	int32 WorldLenght = MyHiddenWord.length();//assuming same lenght as guess
+	int32 WordLength = MyHiddenWord.length();//assuming same lenght as guess
 
-	for (int32 MHWChar = 0; MHWChar < WorldLenght; MHWChar++)
+	for (int32 MHWChar = 0; MHWChar < WordLength; MHWChar++)
 	{	//Сравниваем буквы с загаданным словом
-		for (int32 GChar = 0; GChar < WorldLenght; GChar++)
+		for (int32 GChar = 0; GChar < WordLength; GChar++)
 		{	//Если они совпадают то
 			if (Guess[GChar] == MyHiddenWord[MHWChar])
 			{
@@ -49,7 +49,7 @@ FBullCowCount FBullCowGame::SubmitValidGuess(FString Guess)
 			}
 		}
 	}
-	if (BullCowCount.Bulls == WorldLenght)
+	if (BullCowCount.Bulls == WordLength)
 	{
 		bGameIsWon = true;
 	}
@@ -61,23 +61,23 @@ FBullCowCount FBullCowGame::SubmitValidGuess(FString Guess)
 	return BullCowCount;
 }
 
-EWordStatus FBullCowGame::CheckGuessValidity(FString Guess) const
+EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess) const
 {
 	if (false)// if the guess isn't an isogram
 	{
-		return EWordStatus::Not_Isogram;
+		return EGuessStatus::Not_Isogram;
 	} 
 	else if(false) // if the guess isn't all lowercase
 		{
-		return EWordStatus::No_LowerCase;
+		return EGuessStatus::No_LowerCase;
 		}
 		else if (Guess.length()!=GetHiddenWordLength())
 		{
-			return EWordStatus::Wrong_Length;
+			return EGuessStatus::Wrong_Length;
 		}
 			else
 			{
-				return EWordStatus::OK;
+				return EGuessStatus::OK;
 			}
 
 }
